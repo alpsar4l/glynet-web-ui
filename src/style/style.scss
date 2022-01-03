@@ -82,6 +82,49 @@ main {
             width: calc(100% - var(--desktop-right-menu-width) - 103px);
         }
     }
+
+    .where {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(50%, 50%);
+        font-size: 40px;
+        font-family: 'Gilroy-Bold', sans-serif;
+        z-index: 999;
+
+        --line-color: rgba(0, 0, 0, 0.13);
+
+        span {
+            position: absolute;
+            z-index: 9999;
+        }
+
+        &::after {
+            content: " ";
+            display: inline-block;
+            position: absolute;
+            background: var(--line-color);
+            width: 10px;
+
+            height: 100vh;
+
+            left: 50%;
+            top: -51.3vh;
+        }
+
+        &::before {
+            content: " ";
+            display: inline-block;
+            position: absolute;
+            background: var(--line-color);
+            height: 10px;
+
+            width: 1000vh;
+
+            top: 50%;
+            left: -300vh;
+        }
+    }
 }
 
 :global(body) {

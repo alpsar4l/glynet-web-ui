@@ -4,7 +4,7 @@
 
 	// Pages
 	import Home from "./pages/Home/index.svelte";
-	import About from "./pages/About/index.svelte";
+	import Explore from "./pages/Explore/index.svelte";
 
 	// Components
 	import Header from "./components/Header/index.svelte";
@@ -18,7 +18,7 @@
 	let current_tab: string;
 
 	page('/', () => (current = Home));
-	page('/about', () => (current = About));
+	page('/explore', () => (current = Explore));
 
 	page.start();
 
@@ -33,6 +33,10 @@
 </svelte:head>
 
 <main>
+	<div class="where">
+		<span>{current_tab}</span>
+	</div>
+
 	<div class="app">
 		<div class="left">
 			<LeftMenu />
@@ -40,6 +44,12 @@
 		<div class="center">
 			<div class="content">
 				<Header />
+
+				<div class="dynamic">
+					<!---
+					<svelte:component this={current} />
+					--->
+				</div>
 			</div>
 		</div>
 		<div class="right">
