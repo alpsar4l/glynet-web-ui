@@ -55,21 +55,15 @@
         },
     ];
 
-    let current_tab;
-
-    tab.subscribe(value => {
-        current_tab = value;
-    });
-
     function changePath(path) {
         history.pushState('', '', path);
-        tab.update(n => path);
+        $tab = path;
     }
 </script>
 
 <div class="menu">
     {#each menuItems as item}
-    <div on:click={() => { changePath(item.path) }} class="menu-item" selected="{current_tab === item.path}">
+    <div on:click={() => { changePath(item.path) }} class="menu-item" selected="{$tab === item.path}">
         <div class="icon">
             {@html item.icon}
         </div>

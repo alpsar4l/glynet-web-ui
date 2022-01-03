@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { tab } from '../../stores.ts';
     import { SearchIcon, PremiumIcon, MoonIcon, BellIcon, AttachmentIcon } from '../../icons';
 </script>
 
@@ -28,7 +27,7 @@
 
         <div class="search-container">
             <div class="area">
-                <input type="text" placeholder="Bir şeyler arayın" id="">
+                <input type="text" placeholder="Bir şeyler arayın">
             </div>
             <div class="icon">
                 {@html SearchIcon}

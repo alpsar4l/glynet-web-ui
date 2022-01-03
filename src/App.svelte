@@ -1,5 +1,6 @@
 <script lang="ts">
 	// Modules
+	import { onMount } from "svelte";
 	import page from 'page';
 
 	// Pages
@@ -12,18 +13,36 @@
 	import FixedRightPanel from "./components/Right/index.svelte";
 
 	// Stores
-	import { user, tab } from './stores.ts';
+	import { user, rank } from './stores.ts';
+
+	// Config
+	import Config from "./config.ts";
 
 	let current = Home;
-	let current_tab: string;
 
 	page('/', () => (current = Home));
 	page('/explore', () => (current = Explore));
 
 	page.start();
 
-	tab.subscribe(value => {
-		current_tab = value;
+	onMount(async () => {
+		fetch(`${Config.API_URL}/api/@me/client`)
+				.then(response => response.json())
+				.then(data => {
+					user.update(n => data);
+				}).catch(error => {
+			console.log(error);
+			return [];
+		});
+
+		fetch(`${Config.API_URL}/api/@me/client/level`)
+				.then(response => response.json())
+				.then(data => {
+					rank.update(n => data);
+				}).catch(error => {
+			console.log(error);
+			return [];
+		});
 	});
 </script>
 
@@ -33,9 +52,11 @@
 </svelte:head>
 
 <main>
+	<!---
 	<div class="where">
-		<span>{current_tab}</span>
+		<span>{$tab}</span>
 	</div>
+	--->
 
 	<div class="app">
 		<div class="left">
@@ -46,9 +67,7 @@
 				<Header />
 
 				<div class="dynamic">
-					<!---
 					<svelte:component this={current} />
-					--->
 				</div>
 			</div>
 		</div>
