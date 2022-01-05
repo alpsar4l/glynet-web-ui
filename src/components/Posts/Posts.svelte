@@ -17,16 +17,17 @@
         ShareIcon,
         BookmarksIconOutline,
         BookmarksIconFilled
-    } from "../../icons";
+    } from "../../scripts/icons";
 
-    import Config from "../../config.ts";
+    import { select, bottomAlert } from '../../scripts/functions.ts';
+    import Config from "../../scripts/config.ts";
     import { onMount } from "svelte";
 
-    export let type = 'feed';
-    export let query = 'unknown';
-    export let filters = true;
+    export let type: string = 'feed';
+    export let query: string = 'unknown';
+    export let filters: boolean = true;
 
-    let posts = {};
+    let posts: object = {};
 
     onMount(async () => {
         fetch(`${Config.API_URL}/api/@me/posts/${type}/${query}?raw=true`)
@@ -35,6 +36,37 @@
                 posts = data;
             });
     });
+
+    function like(id) {
+        let icon: HTMLElement = select(`.post-btn-like-${id}`);
+        let text: HTMLElement = select(`.post-btn-text-like-${id} span`);
+
+        icon.classList.toggle('icon-2');
+
+        if (icon.classList.contains('icon-2')) {
+            bottomAlert('Gönderi beğenildi')
+            text.innerText = (parseInt(text.innerText) + 1).toString();
+        } else {
+            bottomAlert('Gönderiden beğeni kaldırıldı')
+            text.innerText = (parseInt(text.innerText) - 1).toString();
+        }
+
+        fetch(`${Config.API_URL}/api/@me/posts/like/${id}`)
+    }
+
+    function save(id) {
+        let icon: HTMLElement = select(`.post-btn-save-${id}`);
+
+        icon.classList.toggle('icon-2');
+
+        if (icon.classList.contains('icon-2')) {
+            bottomAlert('Gönderi kaydedildi')
+        } else {
+            bottomAlert('Gönderi kaydedilenlerden kaldırıldı')
+        }
+
+        fetch(`${Config.API_URL}/api/@me/posts/save/${id}`)
+    }
 </script>
 
 <div class="posts-container">
@@ -135,7 +167,7 @@
                         <div class="post-buttons">
                             <div class="post-button-left">
                                 <div class="post-button post-button-like">
-                                    <div class="icon post-btn-icon-like post-btn-like-{post.id} icon-{post.likes.isLiked ? 2 : 1}">
+                                    <div on:click={() => { like(post.id) }} class="icon post-btn-icon-like post-btn-like-{post.id} icon-{post.likes.isLiked ? 2 : 1}">
                                         {@html HeartIconOutline}
                                         {@html HeartIconFilled}
                                     </div>
@@ -159,7 +191,7 @@
                             </div>
                             <div class="post-button-right">
                                 <div class="post-button">
-                                    <div class="icon post-btn-icon-save post-btn-save-{post.id} icon-{post.bookmarks.isSaved ? 2 : 1}">
+                                    <div on:click={() => { save(post.id) }} class="icon post-btn-icon-save post-btn-save-{post.id} icon-{post.bookmarks.isSaved ? 2 : 1}">
                                         {@html BookmarksIconOutline}
                                         {@html BookmarksIconFilled}
                                     </div>
@@ -174,5 +206,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Posts';
 </style>

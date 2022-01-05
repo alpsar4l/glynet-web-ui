@@ -1,3 +1,3 @@
 <style lang="scss">
-    @import './style.scss';
+    @import 'Explore';
 </style>

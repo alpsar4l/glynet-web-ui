@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { VerifiedBadge, SearchIcon, TrendingUpIcon, ArrowDownIcon, ArrowUpIcon } from "../../icons";
-    import { user, rank } from '../../stores.ts';
-    import Config from "../../config";
+    import { VerifiedBadge, SearchIcon, TrendingUpIcon, ArrowDownIcon, ArrowUpIcon } from "../../scripts/icons";
+    import { user, rank } from '../../scripts/stores.ts';
+    import Config from "../../scripts/config";
 
     let suggested_contacts = [];
     let trending_topics = [];
@@ -129,5 +129,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Right';
 </style>

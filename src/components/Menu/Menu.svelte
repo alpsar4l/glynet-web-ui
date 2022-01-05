@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { tab } from '../../stores.ts';
-    import * as Icon from '../../icons';
+    import { tab } from '../../scripts/stores.ts';
+    import * as Icon from '../../scripts/icons';
 
     const menuItems = [
         {
@@ -72,5 +72,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Menu';
 </style>

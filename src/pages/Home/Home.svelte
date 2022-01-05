@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Posts from "../../components/Posts/index.svelte";
-    import Stories from "./components/Stories/index.svelte";
+    import Posts from "../../components/Posts/Posts.svelte";
+    import Stories from "./components/Stories/Stories.svelte";
 </script>
 
 <div class="feed-container">
@@ -12,5 +12,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Home';
 </style>

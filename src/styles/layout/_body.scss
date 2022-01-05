@@ -1,0 +1,28 @@
+main {
+    position: relative;
+    background-color: #f0f2f5;
+    overflow: hidden;
+    height: 100vh;
+
+    line-height: 24px;
+
+    .app {
+        display: flex;
+        font-size: 19px;
+
+        @import "left";
+
+        @import "center";
+
+        @import "right";
+    }
+
+    @import "../components/others";
+
+    @import "../components/modals";
+}
+
+:global(body) {
+    margin: 0;
+    padding: 0;
+}

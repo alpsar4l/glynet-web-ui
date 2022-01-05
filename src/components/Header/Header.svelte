@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SearchIcon, PremiumIcon, MoonIcon, BellIcon, AttachmentIcon } from '../../icons';
+    import { SearchIcon, PremiumIcon, MoonIcon, BellIcon, AttachmentIcon } from '../../scripts/icons';
 </script>
 
 <div class="header">
@@ -37,5 +37,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Header';
 </style>

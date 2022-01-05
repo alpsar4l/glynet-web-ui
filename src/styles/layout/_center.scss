@@ -1,0 +1,16 @@
+.center {
+    padding: 15px;
+    width: calc(100% - var(--desktop-right-menu-width) - 103px);
+
+    .dynamic {
+        --main-width: 1250px;
+        max-width: 1250px;
+        width: 100%;
+        position: relative;
+
+        margin: 15px auto;
+        border-radius: 15px;
+        overflow-y: auto;
+        height: calc(100vh - 108px);
+    }
+}

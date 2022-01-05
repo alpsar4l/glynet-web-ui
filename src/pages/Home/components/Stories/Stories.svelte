@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { PlusIcon } from "../../../../icons";
-    import Config from "../../../../config.ts";
-    import { user } from '../../../../stores.ts';
+    import { PlusIcon } from "../../../../scripts/icons";
+    import Config from "../../../../scripts/config.ts";
+    import { user } from '../../../../scripts/stores.ts';
     import { onMount } from "svelte";
 
     let stories = {};
@@ -104,5 +104,5 @@
 </div>
 
 <style lang="scss">
-    @import './style.scss';
+    @import 'Stories';
 </style>
